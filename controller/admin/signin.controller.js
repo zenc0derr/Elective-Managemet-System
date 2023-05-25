@@ -6,20 +6,33 @@ class signinController {
 		try {
 			const admin = await signinDAO.SignIn(req);
 			if (admin) {
-				const token = jwt.sign(
-					{
-						admin_id: req.body.admin_id,
-					},
-					"secret123"
-				);
 
-				return res.json({ status: "ok", user: token });
+				return res.json({ status: "ok", user: true });
 			} else {
 				return res.json({ status: "error", user: false });
 			}
 		} catch (error) {
 			console.error(`apiSignIn, ${error}`);
 			return res.json({ status: error });
+		}
+	}
+
+	static async apiOtp(req, res){
+		try {
+			const admin = await signinDAO.Otp(req);
+			if(admin){
+				const token = jwt.sign(
+					{
+						admin_id: req.body.admin_id,
+					},
+					"secret123"
+				);
+				return res.json({ status: "ok", user: token });
+			}else{
+				return res.json({ status: "error", user: false });
+			}
+		} catch (e) {
+			
 		}
 	}
 }

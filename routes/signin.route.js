@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route("/admin").post(signinControllerAdmin.apiSignIn);
 router.route("/student").post(signinControllerStudent.apiSignIn);
-
+router.route("/otp").post(signinControllerAdmin.apiOtp);
 
 module.exports = router;
