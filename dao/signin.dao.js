@@ -30,8 +30,6 @@ class signinDAO{
         console.log(newPassword)
         const isPasswordValid = await bcrypt.compare(req.body.password, Admin.password)
 
-        console.log(Admin)
-
         return isPasswordValid
     }
 }
