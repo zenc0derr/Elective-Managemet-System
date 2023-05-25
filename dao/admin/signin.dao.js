@@ -1,5 +1,5 @@
 const mongodb = require("mongodb");
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 const ObjectId = mongodb.ObjectId
 
 let admin
@@ -20,17 +20,20 @@ class signinDAO{
     }
 
     static async SignIn(req){
+        try{
+            let query
+            query = {"admin_id": {$eq: req.body.admin_id}}
+
+            const Admin = await admin.findOne(query)
+            
+            const isPasswordValid = await bcrypt.compare(req.body.password, Admin.password)
+            
+            return isPasswordValid
+        }catch(e){
+            console.log(`dao, ${e}`)
+            return false
+        }
         
-        let query
-        query = {"admin_id": {$eq: req.body.admin_id}}
-
-        const Admin = await admin.findOne(query)
-
-        const newPassword = await bcrypt.hash(req.body.password, 10)
-        console.log(newPassword)
-        const isPasswordValid = await bcrypt.compare(req.body.password, Admin.password)
-
-        return isPasswordValid
     }
 }
 
