@@ -1,8 +1,13 @@
 const coursesDAO = require("../../dao/courses/courses.dao");
 
 class signinController {
-	static async apiGetCourses(req, res){
-        const coursesList = await coursesDAO.getCourses(req)
+	static async apiGetProfessionalElectives(req, res){
+        const coursesList = await coursesDAO.getProfessionalElective(req)
+        res.json(coursesList)
+    }
+
+    static async apiGetFreeElective(req, res){
+        const coursesList = await coursesDAO.getFreeElective(req)
         res.json(coursesList)
     }
 }
