@@ -20,15 +20,20 @@ class signinDAO{
     }
 
     static async SignIn(req){
-        let query
-        query = {"student_id": {$eq: req.body.student_id}}
+        try{
+            let query
+            query = {"student_id": {$eq: req.body.id}}
 
-        const Student = await student.findOne(query)
+            const Student = await student.findOne(query)
 
-        //const newPassword = await bcrypt.hash(req.body.password, 10)
-        const isPasswordValid = await bcrypt.compare(req.body.password, Student.password)
+            //const newPassword = await bcrypt.hash(req.body.password, 10)
+            const isPasswordValid = await bcrypt.compare(req.body.password, Student.password)
 
-        return isPasswordValid
+            return isPasswordValid
+        }catch(e){
+            console.error(`student sign in dao, ${e}`)
+        }
+        
     }
 }
 
