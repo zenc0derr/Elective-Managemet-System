@@ -22,7 +22,6 @@ class coursesDAO{
         try{
             let query = {"type":{$eq: "Professional"}}
             cursor = courses.find(query)
-            console.log(cursor)
         }catch{
             console.error(`error in finding courses, ${e}`)
             return {coursesList:[]}
