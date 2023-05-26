@@ -23,7 +23,7 @@ class signinController {
 			if(admin){
 				const token = jwt.sign(
 					{
-						admin_id: req.body.admin_id,
+						admin_id: req.body.id,
 					},
 					"secret123"
 				);

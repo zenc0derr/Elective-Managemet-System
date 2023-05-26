@@ -9,7 +9,7 @@ class signinController {
 			if (student) {
 				const token = jwt.sign(
 					{
-						student_id: req.body.student_id,
+						student_id: req.body.id,
 					},
 					"secret123"
 				);
