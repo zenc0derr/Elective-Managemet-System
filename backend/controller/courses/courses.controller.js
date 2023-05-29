@@ -36,11 +36,27 @@ class signinController {
 
             const posted = await coursesDAO.PostElective(courseDetails)
 
-            res.json({status: "success"})
+            res.status(200).json({status: "success"})
         }catch(e) {
             res.status(500).json({error: e.message})
         }
         
+    }
+
+    static async apiUpdateElective(req, res){
+        try{
+            const result = await coursesDAO.updateElective(req)
+
+            if(result){
+                res.status(200).json({status: "success"})
+            }else{
+                res.json({staus: "Failed", msg: "Not Matching course Id"})
+            }
+            
+        }catch(e){
+            console.error(`Error in apiUpdateElective, ${e}`)
+            res.status(500).json({error: e.message})
+        }
     }
 }
 

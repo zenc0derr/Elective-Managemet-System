@@ -9,7 +9,7 @@ class studentDAO{
         }
 
         try {
-            students = await conn.db(process.env.DATABASE_NAME).collection("students")
+            students = await conn.db(process.env.DATABASE_NAME).collection("student_info")
         } catch (e) {
             console.error(
                 `unable to connect with course_catalogue, ${e}`
