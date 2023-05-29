@@ -17,11 +17,30 @@ class coursesDAO{
         }
     }
 
+    static async getElective(req){
+        let cursor
+        try{
+            cursor = await courses.find()
+        }catch(e){
+            console.error(`Error in Getting all courses, ${e}`)
+        }
+
+        try{
+            const coursesList = await cursor.toArray()
+            return {coursesList}
+        }catch(e){
+            console.error(
+                `Unable to convert cursor to array, ${e}`
+            )
+            return {coursesList:[]}
+        }
+    }
+
     static async getProfessionalElective(req){
         let cursor
         try{
             let query = {"type":{$eq: "Professional"}}
-            cursor = courses.find(query)
+            cursor = await courses.find(query)
         }catch{
             console.error(`error in finding courses, ${e}`)
             return {coursesList:[]}
@@ -43,7 +62,7 @@ class coursesDAO{
         let cursor
         try{
             let query = {"type":{$eq: "Free"}}
-            cursor = courses.find(query)
+            cursor = await courses.find(query)
         }catch{
             console.error(`error in finding courses, ${e}`)
             return {coursesList:[]}
@@ -58,6 +77,18 @@ class coursesDAO{
             )
             return {coursesList:[]}
         }
+
+    }
+
+    static async PostElective(courseDetails){
+        try{
+            console.log(courseDetails)
+            return await courses.insertOne(courseDetails)
+        }catch(e){
+            console.error(`Unable to post review: ${e}`)
+            return { error: e }
+        }
+        
 
     }
 }
