@@ -85,6 +85,17 @@ class studentDAO{
         
         return EnrollmentList
     }
+
+    static async getStudentByCourse(req){
+        try{
+            let cursor1 = await students.find({courses_enrolled: req.body.course_id})
+            const studentList = await cursor1.toArray()
+            return studentList
+        }catch(e){
+            console.log(`getStudentByCourse Error, ${e}`)
+            return {studentsList:[]}
+        }
+    }
 }
 
 module.exports = studentDAO

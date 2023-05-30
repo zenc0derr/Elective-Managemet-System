@@ -10,6 +10,17 @@ class studentController{
         const enrollmentData = await studentDAO.getEnrollment(req)
         res.json(enrollmentData)
     }
+
+    static async apiGetStudentByCourse(req, res){
+        try{
+            const studentsList = await studentDAO.getStudentByCourse(req)
+            res.json(studentsList)
+        }catch(e){
+            console.error(`apiGetStudentByCourse Error, ${e}`)
+            res.json({error : e})
+        }
+        
+    }
 }
 
 module.exports = studentController

@@ -27,7 +27,7 @@ class signinController {
                 duration : req.body.duration,
                 venue : req.body.venue,
                 description : req.body.description,
-                course_id : req.body.course_id,
+                id : req.body.course_id,
                 image : req.body.image_id,
                 type : req.body.type,
                 faculty_id : req.body.faculty_id,

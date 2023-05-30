@@ -81,13 +81,34 @@ class coursesDAO{
     }
 
     static async PostElective(courseDetails){
+        let x
+        let y
         try{
-            console.log(courseDetails)
-            return await courses.insertOne(courseDetails)
+            x = await courses.find({id: courseDetails.id})
+            y = await x.toArray()
         }catch(e){
-            console.error(`Unable to post review: ${e}`)
-            return { error: e }
+            console.error(`Unable to find course: ${e}`)
         }
+        if(y.length == 0){
+            try{
+                return await courses.insertOne(courseDetails)
+            }catch(e){
+                console.error(`Unable to post review: ${e}`)
+                return { error: e }
+            }
+        }else{
+            try{
+                return await courses.updateOne(
+                    {id: courseDetails.id},
+                    {$set: courseDetails}
+        
+                )
+            }catch(e){
+                console.error(`Unable to update review: ${e}`)
+                return { error: e }
+            } 
+        }
+        
         
 
     }
@@ -95,7 +116,7 @@ class coursesDAO{
     static async updateElective(courseDetails){
         try{
             return await courses.updateOne(
-                {course_id: courseDetails.course_id},
+                {id: courseDetails.course_id},
                 {$set: courseDetails}
     
             )
@@ -120,7 +141,7 @@ class coursesDAO{
         try{
             const coursesList = await cursor.toArray()
             const category = coursesList.map(function (course) {
-                return course.course_id;
+                return course.id;
             });
             
               
