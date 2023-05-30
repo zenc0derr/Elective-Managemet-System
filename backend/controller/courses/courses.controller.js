@@ -45,7 +45,7 @@ class signinController {
 
     static async apiUpdateElective(req, res){
         try{
-            const result = await coursesDAO.updateElective(req)
+            const result = await coursesDAO.updateElective(req.body)
 
             if(result){
                 res.status(200).json({status: "success"})

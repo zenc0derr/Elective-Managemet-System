@@ -94,11 +94,12 @@ class coursesDAO{
 
     static async updateElective(courseDetails){
         try{
-            console.log(courseDetails)
             return await courses.updateOne(
                 {course_id: courseDetails.course_id},
                 {$set: courseDetails}
+    
             )
+            return true;
         }catch(e){
             console.error(`Unable to update review: ${e}`)
             return { error: e }

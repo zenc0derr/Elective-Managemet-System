@@ -22,7 +22,7 @@ class signinDAO{
     static async SignIn(req){
         try{
             let query
-            query = {"student_id": {$eq: req.body.id}}
+            query = {"id": {$eq: req.body.id}}
 
             const Student = await student.findOne(query)
 
