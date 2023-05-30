@@ -13,7 +13,7 @@ class studentController{
 
     static async apiGetStudentByCourse(req, res){
         try{
-            const studentsList = await studentDAO.getStudentByCourse(req)
+            const studentsList = await studentDAO.getStudentByCourse(req.params.id)
             res.json(studentsList)
         }catch(e){
             console.error(`apiGetStudentByCourse Error, ${e}`)

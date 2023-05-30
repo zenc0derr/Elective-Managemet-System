@@ -86,9 +86,9 @@ class studentDAO{
         return EnrollmentList
     }
 
-    static async getStudentByCourse(req){
+    static async getStudentByCourse(course_id){
         try{
-            let cursor1 = await students.find({courses_enrolled: req.body.course_id})
+            let cursor1 = await students.find({courses_enrolled: course_id})
             const studentList = await cursor1.toArray()
             return studentList
         }catch(e){
