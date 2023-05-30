@@ -1,10 +1,23 @@
 const mongodb = require("mongodb");
-const fetch = require("node-fetch");
 
-
+let courses
 let students
 
 class studentDAO{
+    static async injectDB2(conn){
+        if(courses){
+            return
+        }
+
+        try {
+            courses = await conn.db(process.env.DATABASE_NAME).collection("course_catalogue")
+        } catch (e) {
+            console.error(
+                `unable to connect with course_catalogue, ${e}`
+            )
+        }
+    }
+
     static async injectDB(conn){
         if(students){
             return
@@ -39,20 +52,36 @@ class studentDAO{
     }
 
     static async getEnrollment(req){
-        const x = await fetch("https://aems-api.onrender.com/api/courses/category", {method: 'GET'})
-        const response = await x.json()
-        const courses = response.category
+        
+        let cursor
+        let category
+
+        try{
+            cursor = await courses.find()
+        }catch(e){
+            console.error(`Error in Getting all courses, ${e}`)
+        }
+
+        try{
+            const coursesList = await cursor.toArray()
+            category = coursesList.map(function (course) {
+                return course.course_id;
+            });
+        }catch(e){
+            console.error(
+                `Unable to convert cursor to array, ${e}`
+            )
+        }
+
         const EnrollmentList = []
 
-        for(let course of courses){
-            let cursor = await students.find({courses_enrolled: course})
-            const student = await cursor.toArray()
+        for(let course of category){
+            let cursor1 = await students.find({courses_enrolled: course})
+            const student = await cursor1.toArray()
             let temp = {}
             temp[course] = student.length
             EnrollmentList.push(temp)
         }
-        
-        console.log(EnrollmentList)
         
         return EnrollmentList
     }

@@ -26,6 +26,8 @@ Mongoclient.connect(process.env.DATABASE, {
         await signinDAOStudent.injectDB(client);
         await coursesDAO.injectDB(client);
 		await studentDAO.injectDB(client)
+		await studentDAO.injectDB2(client)
+
 
 		app.listen(port, () => {
 			console.log(`listening on port ${port}`);

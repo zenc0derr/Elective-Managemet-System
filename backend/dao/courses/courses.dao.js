@@ -119,7 +119,6 @@ class coursesDAO{
 
         try{
             const coursesList = await cursor.toArray()
-            console.log(coursesList)
             const category = coursesList.map(function (course) {
                 return course.course_id;
             });
