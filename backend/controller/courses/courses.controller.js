@@ -58,6 +58,11 @@ class signinController {
             res.status(500).json({error: e.message})
         }
     }
+
+    static async apiGetCategory(req, res){
+        const category = await coursesDAO.getCategory()
+        res.json(category)
+    }
 }
 
 module.exports = signinController;

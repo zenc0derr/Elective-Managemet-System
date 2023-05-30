@@ -107,6 +107,32 @@ class coursesDAO{
         
 
     }
+    
+    static async getCategory(){
+
+        let cursor
+        try{
+            cursor = await courses.find()
+        }catch(e){
+            console.error(`Error in Getting all courses, ${e}`)
+        }
+
+        try{
+            const coursesList = await cursor.toArray()
+            console.log(coursesList)
+            const category = coursesList.map(function (course) {
+                return course.course_id;
+            });
+            
+              
+            return {category}
+        }catch(e){
+            console.error(
+                `Unable to convert cursor to array, ${e}`
+            )
+            return {category:[]}
+        }
+    }
 }
 
 module.exports = coursesDAO

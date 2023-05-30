@@ -35,6 +35,15 @@ class studentDAO{
             return {studentsList:[]}
         }
     }
+
+    static async getEnrollment(req){
+        const x = await fetch("https://aems-api.onrender.com/api/student", {method: 'GET'})
+        var y = await x.json()
+        console.log(y)
+        // const coursesList = courses.find({}, {course_id: 1/true})
+        // console.log(coursesList)
+        return true
+    }
 }
 
 module.exports = studentDAO
