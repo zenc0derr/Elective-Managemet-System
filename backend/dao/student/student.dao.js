@@ -49,7 +49,8 @@ class studentDAO{
             temp[course] = student.length
             EnrollmentList.push(temp)
         }
-            
+        
+        console.log(EnrollmentList)
         
         return EnrollmentList
     }
