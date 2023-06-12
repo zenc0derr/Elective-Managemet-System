@@ -32,6 +32,9 @@ class signinController {
                 type : req.body.type,
                 faculty_id : req.body.faculty_id,
                 short_form : req.body.short_form,
+                pre_requisite: req.body.pre_requisite,
+                start_time: null,
+                end_time: null
             }
 
             const posted = await coursesDAO.PostElective(courseDetails)

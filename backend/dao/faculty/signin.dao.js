@@ -1,20 +1,19 @@
 const mongodb = require("mongodb");
 const bcrypt = require('bcryptjs')
-const ObjectId = mongodb.ObjectId
 
-let student
+let faculty
 
 class signinDAO{
     static async injectDB(conn){
-        if(student){
+        if(faculty){
             return
         }
 
         try {
-            student = await conn.db(process.env.DATABASE_NAME).collection("student_info")
+            faculty = await conn.db(process.env.DATABASE_NAME).collection("faculty_info")
         } catch (e) {
             console.error(
-                `unable to connect with student_info, ${e}`
+                `unable to connect with faculty_info, ${e}`
             )
         }
     }
@@ -23,14 +22,16 @@ class signinDAO{
         try{
             let query
             query = {"id": {$eq: req.body.id}}
+            console.log(query)
+            const Faculty = await faculty.findOne(query)
 
-            const Student = await student.findOne(query)
             //const newPassword = await bcrypt.hash(req.body.password, 10)
-            const isPasswordValid = await bcrypt.compare(req.body.password, Student.password)
+            console.log(req.body)
+            const isPasswordValid = await bcrypt.compare(req.body.password, Faculty.password)
 
             return isPasswordValid
         }catch(e){
-            console.error(`student sign in dao, ${e}`)
+            console.error(`faculty sign in dao, ${e}`)
         }
         
     }
