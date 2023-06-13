@@ -3,7 +3,9 @@ const dotenv = require("dotenv");
 const mongodb = require("mongodb");
 const signinDAOAdmin = require("./dao/admin/signin.dao");
 const signinDAOStudent = require("./dao/student/signin.dao");
+const signinDAOFaculty = require("./dao/student/signin.dao");
 const coursesDAO = require("./dao/courses/courses.dao")
+const studentDAO = require("./dao/student/student.dao")
 
 dotenv.config();
 
@@ -23,7 +25,10 @@ Mongoclient.connect(process.env.DATABASE, {
 	.then(async (client) => {
 		await signinDAOAdmin.injectDB(client);
         await signinDAOStudent.injectDB(client);
+		await signinDAOFaculty.injectDB(client);
         await coursesDAO.injectDB(client);
+		await studentDAO.injectDB(client)
+		await studentDAO.injectDB2(client)
 
 		app.listen(port, () => {
 			console.log(`listening on port ${port}`);
