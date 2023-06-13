@@ -5,6 +5,7 @@ import CourseCard from "./CourseCard.jsx"
 const Courses = (props)=>{
     
     const CourseList=props.allCourses.map((course)=>{
+        console.log(course);
         return (<CourseCard 
                     updateWishlist={props.addorRemoveToWishList} 
                     key={course.id} 
