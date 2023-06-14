@@ -33,9 +33,9 @@ const ExpandCard=(props)=>{
                 </div>
             </div>
             <div className="flex justify-evenly my-5">
-                <p className="text-[11px] font-medium">{`${props.duration}hrs per week`}</p>
+                <p className="text-[11px] font-medium">{`lecture hrs:${props.duration}`}</p>
                 <p className="text-[11px] font-medium">{`venue:${props.venue}`}</p>
-                <p className="text-[11px] font-medium">{`rating by students:${rating}`}</p>
+                <p className="text-[11px] font-medium">{`rating:${rating}`}</p>
                 <p className="text-[11px] font-medium">{`${props.remainingPlaces} places left`}</p>
             </div>
             

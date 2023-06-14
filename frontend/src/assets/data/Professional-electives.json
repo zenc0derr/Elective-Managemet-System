@@ -1,137 +1,27 @@
 [
-    {
-        "id":1,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":2,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":3,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":4,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Ommala okka",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":5,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":6,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":7,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":8,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    },
-    {
-        "id":9,
-        "image":"src/assets/images/IOTimage.png",
-        "rating":"4.5",
-        "credit": 4,
-        "wishlist":false,
-        "name":"Internet Of Things",
-        "faculty":"Dr.MJB",
-        "reveiw":"great course taught by the legend himself Dr.MJB",
-        "remainingPlaces":110,
-        "duration":4,
-        "venue":"AB3",
-        "description":"The Internet of Things (IoT) is a network of physical objects that are embedded with sensors, software, and network connectivity to collect and exchange data."
-
-    }
+   {
+    "name":"Internet Of Things",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "name":"Internet Of Things",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "name":"Internet Of Things",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "name":"Internet Of Things",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "name":"Internet Of Things",
+    "faculty":"MJB",
+    "remaining_seats":71
+   }
 ]
