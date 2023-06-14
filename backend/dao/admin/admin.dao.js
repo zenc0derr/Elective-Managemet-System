@@ -1,4 +1,5 @@
 const mongodb = require("mongodb");
+const dayjs = require("dayjs")
 
 let allocation
 
@@ -19,8 +20,11 @@ class adminDAO{
 
     static async setSchedule({start_time, end_time}){
         try{
-            console.log(new Date(start_time)<new Date(end_time))
-            const schedule = {allocation_id: 1, start_time: new Date(start_time), end_time: new Date(end_time)}
+            const sTime = start_time.format()
+            const eTime = end_time.format()
+            
+            const schedule = {allocation_id: 1, start_time: sTime, end_time: eTime}
+            
             const res = await allocation.updateOne(
                 {allocation_id: 1},
                 {$set: schedule})
