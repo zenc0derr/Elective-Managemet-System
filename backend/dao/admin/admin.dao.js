@@ -18,13 +18,13 @@ class adminDAO{
         }
     }
 
-    static async setSchedule({start_time, end_time}){
+    static async setSchedule({start_time, end_time, elecCateg}){
         try{
             const sTime = start_time.format()
             const eTime = end_time.format()
             
-            const schedule = {allocation_id: 1, start_time: sTime, end_time: eTime}
-            
+            const schedule = {allocation_id: 1, start_time: sTime, end_time: eTime, elective_category: elecCateg}
+
             const res = await allocation.updateOne(
                 {allocation_id: 1},
                 {$set: schedule})
