@@ -20,6 +20,8 @@ class adminDAO{
 
     static async setSchedule({start_time, end_time, elecCateg}){
         try{
+
+            console.log(start_time, end_time)
             const sTime = start_time.format()
             const eTime = end_time.format()
             
