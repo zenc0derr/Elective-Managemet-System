@@ -22,10 +22,8 @@ class adminDAO{
         try{
 
             console.log(start_time, end_time)
-            const sTime = start_time.format()
-            const eTime = end_time.format()
             
-            const schedule = {allocation_id: 1, start_time: sTime, end_time: eTime, elective_category: elecCateg}
+            const schedule = {allocation_id: 1, start_time: start_time, end_time: end_time, elective_category: elecCateg}
 
             const res = await allocation.updateOne(
                 {allocation_id: 1},
