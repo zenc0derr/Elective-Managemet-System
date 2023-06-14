@@ -67,6 +67,11 @@ class signinController {
         const category = await coursesDAO.getCategory()
         res.json(category)
     }
+
+    static async apiStudentsGetElective(req, res){
+        const coursesList = await coursesDAO.studentGetElective(req)
+        res.json(coursesList)
+    }
 }
 
 module.exports = signinController;

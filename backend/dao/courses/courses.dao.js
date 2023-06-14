@@ -52,6 +52,33 @@ class coursesDAO{
         }
     }
 
+    static async studentGetElective(req){
+        let cursor
+        let allocation_details
+        try{
+            cursor = await allocation.find({allocation_id: 1})
+            allocation_details = await cursor.toArray()
+        }catch(e){
+            console.error(`Error in Getting all courses, ${e}`)
+        }
+
+        try{
+            const start_time = new Date(allocation_details[0].start_time)
+            const end_time = new Date(allocation_details[0].end_time)
+            const cur_time = new Date()
+            
+
+            if(cur_time<start_time || cur_time>end_time){
+                return {}
+            }
+
+
+            return allocation_details[0].elective_category
+        }catch(e){
+            console.error(`Error in returning courses, ${e}`)
+        }
+    }
+
     static async getProfessionalElective(req){
         let cursor
         try{
