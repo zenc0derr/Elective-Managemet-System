@@ -7,7 +7,7 @@ class adminController{
             
             console.log(dayjs(new Date()))
             const posted = await adminDAO.setSchedule(req.body)
-            res.status(200).json({status: "success"})
+            res.status(200).json(posted)
         }catch(e){
             res.status(500).json({error: e.message})
         }
