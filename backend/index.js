@@ -6,6 +6,7 @@ const signinDAOStudent = require("./dao/student/signin.dao");
 const signinDAOFaculty = require("./dao/student/signin.dao");
 const coursesDAO = require("./dao/courses/courses.dao")
 const studentDAO = require("./dao/student/student.dao")
+const adminDAO = require("./dao/admin/admin.dao")
 
 dotenv.config();
 
@@ -27,8 +28,12 @@ Mongoclient.connect(process.env.DATABASE, {
         await signinDAOStudent.injectDB(client);
 		await signinDAOFaculty.injectDB(client);
         await coursesDAO.injectDB(client);
+        await coursesDAO.injectDBAllocation(client);
 		await studentDAO.injectDB(client)
 		await studentDAO.injectDB2(client)
+		await studentDAO.injectDBAllocation(client)
+
+		await adminDAO.injectDB(client);
 
 		app.listen(port, () => {
 			console.log(`listening on port ${port}`);

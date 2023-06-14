@@ -2,8 +2,23 @@ const mongodb = require("mongodb");
 
 let courses
 let students
+let allocation
 
 class studentDAO{
+    static async injectDBAllocation(conn){
+        if(allocation){
+            return
+        }
+
+        try {
+            allocation = await conn.db(process.env.DATABASE_NAME).collection("allocation")
+        } catch (e) {
+            console.error(
+                `unable to connect with course_catalogue, ${e}`
+            )
+        }
+    }
+
     static async injectDB2(conn){
         if(courses){
             return
