@@ -34,18 +34,6 @@ class coursesDAO{
 
     static async getElective(req){
 
-        let timeCursor = await allocation.find({allocation_id: 1})
-        const time = await timeCursor.toArray()
-
-        let start_time = time[0].start_time.getTime()
-        let end_time = time[0].end_time.getTime()
-        let current_time = new Date().getTime()
-        console.log(current_time)
-
-        if(current_time<start_time || current_time>end_time){
-            return {Status: "No Courses Available"}
-        }
-
         let cursor
         try{
             cursor = await courses.find()
