@@ -20,8 +20,8 @@ class adminDAO{
 
     static async setSchedule({start_time, end_time, elecCateg}){
         try{
-            const sTime = start_time.format()
-            const eTime = end_time.format()
+            const sTime = dayjs().format()
+            const eTime = dayjs().format()
             
             const schedule = {allocation_id: 1, start_time: sTime, end_time: eTime, elective_category: elecCateg}
 
