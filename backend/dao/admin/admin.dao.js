@@ -91,6 +91,7 @@ class adminDAO{
                 try {
                     console.log(pending_students)
                     for(let student of pending_students){
+                        let enrolledList = []
                         console.log(student.name)
                         for(let proffessional of allocation_details[0].elective_category.proffessionalElectives){
                             for(let course of proffessional){
@@ -120,6 +121,8 @@ class adminDAO{
                                         {$push: {courses_enrolled: course.id}}
                                     )
 
+                                    enrolledList.push(course.id)
+
                                     response = await students.updateOne(
                                         {id: student.id},
                                         {$set: {status: "Enrolled"}}
@@ -134,7 +137,7 @@ class adminDAO{
                             from: process.env.MAIL_ADDRESS,
                             to: student.email,
                             subject: 'AEMS Elective Enrollment',
-                            html: `<p>Hey ${student.name}, Seems You haven't Regesistered yourself for the Electives.So have automatically alloted courses for you.</br>Visit AEMS for further details`
+                            html: `<p>Hey ${student.name}, Seems You haven't Regesistered yourself for the Electives.So have automatically alloted courses for you.</br></br>These are the enrolled Electives:</br>${enrolledList}</br>Visit AEMS for further details`
                         };
 
                         transporter.sendMail(mailOptions, function(error, info){
