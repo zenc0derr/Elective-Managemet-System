@@ -126,18 +126,18 @@ class studentDAO{
         const enroll_courses = wishList1.concat(wishList2)
 
         for(let i=0;i<enroll_courses.length;i++){
-            let cursor
             let course
             try{
-                cursor =  await courses.find({id: enroll_courses[i]})
-                course = await cursor.toArray()
+                course =  await courses.findOne({id: enroll_courses[i]})
             }catch(e){
                 console.error(`Error getting course Postenrollement, ${e}`)
                 return e
             }
 
+            console.log(course)
+
             let updatedCourse = {
-                remaining_seats: course[0].remaining_seats - 1
+                remaining_seats: course.remaining_seats - 1
             }
 
             
@@ -163,7 +163,7 @@ class studentDAO{
                     {id: student_id},
                     {$set: {staus: "Enrolled"}}
                 )
-                
+
             }catch(e){
                 console.error(`Error updating student Postenrollement, ${e}`)
                 return e
