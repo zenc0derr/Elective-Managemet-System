@@ -21,6 +21,17 @@ class studentController{
         }
         
     }
+
+    static async apiPostEnrollment(req, res){
+        try{
+            const student = await studentDAO.postEnrollment(req.body)
+        }catch(e){
+            console.error(`apiPostEnrollment Error, ${e}`)
+            res.json({error : e})
+        }
+
+        res.json({status: "success"})
+    }
 }
 
 module.exports = studentController

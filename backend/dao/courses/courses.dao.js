@@ -73,6 +73,33 @@ class coursesDAO{
             }
 
 
+            for(let proffessional of allocation_details[0].elective_category.proffessionalElectives){
+                let i = 0
+                for(let course of proffessional){
+                    cursor = await courses.find({id: course.id})
+                    let x = await cursor.toArray()
+                    if(x[0].remaining_seats == 0){
+                        proffessional.splice(i,1)
+                    }
+
+                    i = i+1
+                }
+            }
+
+            for(let free of allocation_details[0].elective_category.freeElectives){
+                let i = 0
+                for(let course of free){
+                    cursor = await courses.find({id: course.id})
+                    let x = await cursor.toArray()
+
+                    if(x[0].remaining_seats == 0){
+                        free.splice(i,1)
+                    }
+
+                    i = i+1
+                }
+            }
+
             return allocation_details[0].elective_category
         }catch(e){
             console.error(`Error in returning courses, ${e}`)

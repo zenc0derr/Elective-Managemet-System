@@ -111,6 +111,54 @@ class studentDAO{
             return {studentsList:[]}
         }
     }
+
+    static async postEnrollment({student_id, wishlist1, wishlist2}){
+        const enroll_courses = wishlist1.concat(wishlist2)
+
+        for(let i=0;i<enroll_courses.length;i++){
+            let cursor
+            let course
+            try{
+                cursor =  await courses.find({id: enroll_courses[i]})
+                course = await cursor.toArray()
+            }catch(e){
+                console.error(`Error getting course Postenrollement, ${e}`)
+                return e
+            }
+
+            let updatedCourse = {
+                remaining_seats: course[0].remaining_seats - 1
+            }
+
+            
+            try {
+                let response = await courses.updateOne(
+                    {id: enroll_courses[i]},
+                    {$set: updatedCourse}
+                )
+            } catch (e) {
+                console.error(`Error updating remaining seats Postenrollement, ${e}`)
+                return e
+            }
+
+            
+            
+            try{
+                let response = await students.updateOne(
+                    {id: student_id},
+                    {$push: {courses_enrolled: enroll_courses[i]}}
+                )
+            }catch(e){
+                console.error(`Error updating student Postenrollement, ${e}`)
+                return e
+            }
+
+
+        }
+
+        return true
+        
+    }
 }
 
 module.exports = studentDAO
