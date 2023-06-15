@@ -22,7 +22,7 @@ const ExpandCard=(props)=>{
     console.log(gridwidth)
     return (
         <div onMouseLeave={props.toggle} className={`${gridwidth} rounded-lg relative w-[560.25px] shadow-[0px_4px_14px_rgba(0,0,0,0.25)] z-10 bg-white`}>
-            <p onClick={()=>{props.updateWishlist(props.id)}} className="absolute -top-4 right-2 cursor-pointer text-center bg-primary rounded-[50%] w-[33px] h-[33px] text-[19px] border-2 border-black font-semibold mt-[20px]">{(props.wishlist?"-":"+")}</p>
+            <p onClick={()=>{props.updateWishlist(props.id,props.elective)}} className="absolute -top-4 right-2 cursor-pointer text-center bg-primary rounded-[50%] w-[33px] h-[33px] text-[19px] border-2 border-black font-semibold mt-[20px]">{(props.wishlist?"-":"+")}</p>
             <div className="w-[100%] h-[87px] bg-secondary absolute -z-10"></div>
             <div className="flex w-[100%] justify-between  ml-[23px] mt-[33px]">
                 <img className="inline w-[248px] h-[151px]" src={props.image}/>

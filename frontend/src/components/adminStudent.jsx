@@ -8,9 +8,7 @@ import AdminNavExpand from './adminNavExpand.jsx';
 import {useNavigate} from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 
-const AdminHome = (props)=>{
-   
-}
+
 const AdminStu = () => {
   const navigateTo = useNavigate();
   useEffect(()=>{

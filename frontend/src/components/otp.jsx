@@ -33,7 +33,7 @@ const LoginDetails=()=>{
         console.log(data)
         if (data.user){
             sessionStorage.setItem('adminToken', data.user)
-            window.location.href='/admin'
+            window.location.href='/admin/home'
         }
         else{
             setError("*Wrong OTP")
