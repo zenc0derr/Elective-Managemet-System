@@ -7,7 +7,7 @@ class studentController{
     }
 
     static async apiGetSpecificStudent(req, res){
-        const student = await studentDAO.getSpecifiStudents(req.body)
+        const student = await studentDAO.getSpecifiStudents(req.params.id)
         res.json(student)
     }
 

@@ -66,7 +66,7 @@ class studentDAO{
         }
     }
 
-    static async getSpecifiStudents({student_id}){
+    static async getSpecifiStudents(student_id){
         try {
             let student = students.findOne({id: student_id})
             console.log(student)
@@ -124,7 +124,7 @@ class studentDAO{
 
     static async postEnrollment({student_id, wishList1, wishList2}){
         const enroll_courses = wishList1.concat(wishList2)
-
+        console.log(enroll_courses)
         for(let i=0;i<enroll_courses.length;i++){
             let course
             try{
@@ -134,6 +134,7 @@ class studentDAO{
                 return e
             }
 
+            console.log(enroll_courses[i])
             console.log(course)
 
             let updatedCourse = {
