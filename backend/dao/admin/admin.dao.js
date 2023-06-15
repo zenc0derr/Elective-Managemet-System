@@ -63,10 +63,6 @@ class adminDAO{
 
     static async setSchedule({start_time, end_time, elecCateg}){
         try{
-
-            console.log(elecCateg)
-
-            console.log(start_time, end_time)
             
             const schedule = {allocation_id: 1, start_time: start_time, end_time: end_time, elective_category: elecCateg}
 
@@ -100,7 +96,8 @@ class adminDAO{
                                 if(x[0].remaining_seats != 0){
 
                                     let  flag = true
-                                    for(pre in x[0].pre_requisite){
+                                    console.log(x[0].pre_requisite)
+                                    for(let pre of x[0].pre_requisite){
                                         flag == flag && student.courses_enrolled.includes(pre)
                                     }
 
@@ -140,7 +137,7 @@ class adminDAO{
                                 if(x[0].remaining_seats != 0){
 
                                     let  flag = true
-                                    for(pre in x[0].pre_requisite){
+                                    for(let pre of x[0].pre_requisite){
                                         flag == flag && student.courses_enrolled.includes(pre)
                                     }
 
@@ -200,6 +197,15 @@ class adminDAO{
         }catch(e){
             console.error(`Unable to setSchedule: ${e}`)
             return { error: e }
+        }
+    }
+
+    static async getSchedule(){
+        try {
+            let result = await allocation.findOne({allocation_id: 1})
+            return result
+        } catch (e) {
+            console.error(`Get Scheuler Error, ${e}`)
         }
     }
 }
