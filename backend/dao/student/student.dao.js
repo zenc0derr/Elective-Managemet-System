@@ -69,7 +69,6 @@ class studentDAO{
     static async getSpecifiStudents(student_id){
         try {
             let student = students.findOne({id: student_id})
-            console.log(student)
             return student;
         } catch (e) {
             console.error(`Error: getSpecifiStudents, getting student, ${e}`)
@@ -117,14 +116,13 @@ class studentDAO{
             const studentList = await cursor1.toArray()
             return studentList
         }catch(e){
-            console.log(`getStudentByCourse Error, ${e}`)
+            console.error(`getStudentByCourse Error, ${e}`)
             return {studentsList:[]}
         }
     }
 
     static async postEnrollment({student_id, wish1, wish2}){
         const enroll_courses = wish1.concat(wish2)
-        console.log(enroll_courses)
         for(let i=0;i<enroll_courses.length;i++){
             let course
             try{
@@ -133,9 +131,6 @@ class studentDAO{
                 console.error(`Error getting course Postenrollement, ${e}`)
                 return e
             }
-
-            console.log(enroll_courses[i])
-            console.log(course)
 
             let updatedCourse = {
                 remaining_seats: course.remaining_seats - 1
@@ -162,7 +157,7 @@ class studentDAO{
 
                 response = await students.updateOne(
                     {id: student_id},
-                    {$set: {staus: "Enrolled"}}
+                    {$set: {status: "Enrolled"}}
                 )
 
             }catch(e){
