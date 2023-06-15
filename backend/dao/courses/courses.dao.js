@@ -2,8 +2,24 @@ const mongodb = require("mongodb");
 
 let courses
 let allocation
+let students
 
 class coursesDAO{
+
+    static async injectDBStudent(conn){
+        if(students){
+            return
+        }
+
+        try {
+            students = await conn.db(process.env.DATABASE_NAME).collection("student_info")
+        } catch (e) {
+            console.error(
+                `unable to connect with course_catalogue, ${e}`
+            )
+        }
+    }
+
     static async injectDBAllocation(conn){
         if(allocation){
             return
@@ -52,12 +68,14 @@ class coursesDAO{
         }
     }
 
-    static async studentGetElective(req){
+    static async studentGetElective(student_id){
         let cursor
         let allocation_details
+        let student
         try{
             cursor = await allocation.find({allocation_id: 1})
             allocation_details = await cursor.toArray()
+            student = await students.findOne({id: student_id})
         }catch(e){
             console.error(`Error in Getting all courses, ${e}`)
         }
@@ -80,6 +98,14 @@ class coursesDAO{
                     let x = await cursor.toArray()
                     if(x[0].remaining_seats == 0){
                         proffessional.splice(i,1)
+                    }else{
+                        let flag = true
+                        for(let pre of x[0].pre_requisite){
+                            flag = flag && student.courses_enrolled.includes(pre)
+                        }
+                        if(flag == false){
+                            proffessional.splice(i,1)
+                        }
                     }
 
                     i = i+1
@@ -94,6 +120,15 @@ class coursesDAO{
 
                     if(x[0].remaining_seats == 0){
                         free.splice(i,1)
+                    }else{
+                        let flag = true
+                        for(let pre of x[0].pre_requisite){
+                            flag = flag && student.courses_enrolled.includes(pre)
+                        }
+                        console.log(x[0].id, flag)
+                        if(flag == false){
+                            free.splice(i,1)
+                        }
                     }
 
                     i = i+1

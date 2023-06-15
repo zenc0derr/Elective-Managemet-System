@@ -96,9 +96,8 @@ class adminDAO{
                                 if(x[0].remaining_seats != 0){
 
                                     let  flag = true
-                                    console.log(x[0].pre_requisite)
                                     for(let pre of x[0].pre_requisite){
-                                        flag == flag && student.courses_enrolled.includes(pre)
+                                        flag = flag && student.courses_enrolled.includes(pre)
                                     }
 
                                     if(flag == false)
@@ -138,7 +137,7 @@ class adminDAO{
 
                                     let  flag = true
                                     for(let pre of x[0].pre_requisite){
-                                        flag == flag && student.courses_enrolled.includes(pre)
+                                        flag = flag && student.courses_enrolled.includes(pre)
                                     }
 
                                     if(flag == false)

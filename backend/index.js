@@ -29,6 +29,7 @@ Mongoclient.connect(process.env.DATABASE, {
 		await signinDAOFaculty.injectDB(client);
         await coursesDAO.injectDB(client);
         await coursesDAO.injectDBAllocation(client);
+		await coursesDAO.injectDBStudent(client)
 		await studentDAO.injectDB(client)
 		await studentDAO.injectDB2(client)
 		await studentDAO.injectDBAllocation(client)
