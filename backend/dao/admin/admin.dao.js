@@ -4,8 +4,6 @@ const schedule = require('node-schedule');
 
 let allocation
 
-let autoScheduleTime
-
 class adminDAO{
     static async injectDB(conn){
         if(allocation){
@@ -32,7 +30,10 @@ class adminDAO{
                 {allocation_id: 1},
                 {$set: schedule})
             
-            autoScheduleTime = end_time
+            const job = schedule.scheduleJob(end_time, function(){
+                console.log('The answer to life, the universe, and everything!');
+            });
+            
             return res
         }catch(e){
             console.error(`Unable to setSchedule: ${e}`)
@@ -41,8 +42,7 @@ class adminDAO{
     }
 }
 
-const job = schedule.scheduleJob(autoScheduleTime, function(){
-    console.log('The world is going to end today.');
-});
+
   
+
 module.exports = adminDAO
