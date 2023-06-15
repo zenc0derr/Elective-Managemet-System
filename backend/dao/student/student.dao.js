@@ -1,8 +1,19 @@
 const mongodb = require("mongodb");
+const nodemailer = require("nodemailer");
+const dotenv = require("dotenv")
+dotenv.config()
 
 let courses
 let students
 let allocation
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.MAIL_ADDRESS,
+      pass: process.env.MAIL_PASSWORD
+    }
+  });
 
 class studentDAO{
     static async injectDBAllocation(conn){
@@ -124,6 +135,7 @@ class studentDAO{
 
     static async postEnrollment({student_id, wish1, wish2}){
         const enroll_courses = wish1.concat(wish2)
+        
         for(let i=0;i<enroll_courses.length;i++){
             let course
             try{
@@ -169,6 +181,29 @@ class studentDAO{
 
 
         }
+
+        try{
+            let details = await students.findOne({id: student_id})
+            var mailOptions = {
+                from: process.env.MAIL_ADDRESS,
+                to: details.email,
+                subject: 'AEMS Elective Enrollment',
+                html: `<p>Hey ${details.name}, Your Elective Enrollment is done. Visit AEMS for further details`
+            };
+
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(`error, ${error}`);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+            });
+            
+        }catch(e){
+            console.error(`Error sending mail, ${e}`)
+        }
+
+        
 
         return true
         

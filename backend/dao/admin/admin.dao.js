@@ -1,6 +1,16 @@
 const mongodb = require("mongodb");
 const Nschedule = require('node-schedule');
+const nodemailer = require("nodemailer");
+const dotenv = require("dotenv")
+dotenv.config()
 
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.MAIL_ADDRESS,
+      pass: process.env.MAIL_PASSWORD
+    }
+  });
 
 let allocation
 let students
@@ -119,6 +129,21 @@ class adminDAO{
                                 }
                             }
                         }
+
+                        var mailOptions = {
+                            from: process.env.MAIL_ADDRESS,
+                            to: student.email,
+                            subject: 'AEMS Elective Enrollment',
+                            html: `<p>Hey ${student.name}, Seems You haven't Regesistered yourself for the Electives.So have automatically alloted courses for you.</br>Visit AEMS for further details`
+                        };
+
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                              console.log(`error, ${error}`);
+                            } else {
+                              console.log('Email sent: ' + info.response);
+                            }
+                        });
                     }
                 
                     console.log("Job Done")

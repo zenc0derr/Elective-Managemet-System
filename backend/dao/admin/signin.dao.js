@@ -48,7 +48,7 @@ class signinDAO{
                     from: process.env.MAIL_ADDRESS,
                     to: Admin.email,
                     subject: 'AEMS Login OTP',
-                    html: `<p>Hey ${Admin.name}, This is your OTP for AEMS Login:<b>${otp}</b>.</p>?`
+                    html: `<p>Hey ${Admin.name}, This is your OTP for AEMS Login:<b>${otp}</b>.</p>`
                   };
                   
                   transporter.sendMail(mailOptions, function(error, info){
