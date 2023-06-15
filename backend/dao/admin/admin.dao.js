@@ -174,7 +174,7 @@ class adminDAO{
                             from: process.env.MAIL_ADDRESS,
                             to: student.email,
                             subject: 'AEMS Elective Enrollment',
-                            html: `<p>Hey ${student.name}, Seems You haven't Regesistered yourself for the Electives.So have automatically alloted courses for you.</br></br>These are the enrolled Electives:</br>${enrolledList}</br>Visit AEMS for further details`
+                            html: `<p>Hey ${student.name}, Seems You haven't Regesistered yourself for the Electives. So have automatically alloted courses for you.</br></br>These are the enrolled Electives:</br>${enrolledList}</br>Visit AEMS for further details`
                         };
 
                         transporter.sendMail(mailOptions, function(error, info){

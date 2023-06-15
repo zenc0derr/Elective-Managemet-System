@@ -192,7 +192,7 @@ class studentDAO{
                 from: process.env.MAIL_ADDRESS,
                 to: details.email,
                 subject: 'AEMS Elective Enrollment',
-                html: `<p>Hey ${details.name}, Your Elective Enrollment is done</br> </br>These are the enrolled Electives:.</br> ${enrolledList} </br>Visit AEMS for further details`
+                html: `<p>Hey ${details.name}, Your Elective Enrollment is done.</br> </br>These are the enrolled Electives:</br> ${enrolledList} </br>Visit AEMS for further details`
             };
 
             transporter.sendMail(mailOptions, function(error, info){
