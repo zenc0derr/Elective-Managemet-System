@@ -122,7 +122,7 @@ class studentDAO{
         }
     }
 
-    static async postEnrollment({student_id, wishList1, wishList2}){
+    static async postEnrollment({student_id, wish1, wish2}){
         const enroll_courses = wishList1.concat(wishList2)
         console.log(enroll_courses)
         for(let i=0;i<enroll_courses.length;i++){
