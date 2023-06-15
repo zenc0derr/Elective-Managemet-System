@@ -69,6 +69,7 @@ class signinController {
     }
 
     static async apiStudentsGetElective(req, res){
+        console.log(req.params.id)
         const coursesList = await coursesDAO.studentGetElective(req.params.id)
         res.json(coursesList)
     }
