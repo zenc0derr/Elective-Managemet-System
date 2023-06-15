@@ -1,27 +1,63 @@
 [
    {
+    
+    "id":1,
+    "name":"hello",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "id":2,
+    "name":"ok google",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "id":3,
+    "name":"Sanjith",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "id":4,
+    "name":"raghav",
+    "faculty":"MJB",
+    "remaining_seats":71
+   },
+   {
+    "id":5,
     "name":"Internet Of Things",
     "faculty":"MJB",
     "remaining_seats":71
    },
    {
-    "name":"Internet Of Things",
-    "faculty":"MJB",
-    "remaining_seats":71
-   },
-   {
-    "name":"Internet Of Things",
-    "faculty":"MJB",
-    "remaining_seats":71
-   },
-   {
-    "name":"Internet Of Things",
-    "faculty":"MJB",
-    "remaining_seats":71
-   },
-   {
-    "name":"Internet Of Things",
-    "faculty":"MJB",
-    "remaining_seats":71
-   }
+      "id":6,
+      "name":"Internet Of Things",
+      "faculty":"MJB",
+      "remaining_seats":71
+     },
+     {
+      "id":7,
+      "name":"Internet Of Things",
+      "faculty":"MJB",
+      "remaining_seats":71
+     },
+     {
+      "id":8,
+      "name":"Internet Of Things",
+      "faculty":"MJB",
+      "remaining_seats":71
+     },
+     {
+      "id":9,
+      "name":"Internet Of Things",
+      "faculty":"MJB",
+      "remaining_seats":71
+     },
+     {
+      "id":10,
+      "name":"Internet Of Things",
+      "faculty":"MJB",
+      "remaining_seats":71
+     }
 ]

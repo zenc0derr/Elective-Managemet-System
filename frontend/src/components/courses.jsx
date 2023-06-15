@@ -5,8 +5,9 @@ import CourseCard from "./CourseCard.jsx"
 const Courses = (props)=>{
     
     const CourseList=props.allCourses.map((course)=>{
-        console.log(course);
+        console.log(course.name,course.wishlist)
         return (<CourseCard 
+                    elective={props.elective}
                     updateWishlist={props.addorRemoveToWishList} 
                     key={course.id} 
                     id={course.id} 
@@ -23,12 +24,21 @@ const Courses = (props)=>{
                     description={course.description}
                 />)
     })
+    console.log(props.courseCat)
+    const options=props.courseCat.map((cs,index)=>{
+        if(cs[0]=="P")
+            return <option key={index} value={cs}>{cs}</option>
+       else 
+           return <option key={index} value={cs}>{cs}</option>
+
+        
+    })
+    
     return (
         <div className="absolute top-[62px] w-[1050px] scrollbar-hide"> 
         <div className="fixed bg-white w-screen h-[80px]">
             <select className="mt-[31px] ml-[28px] py-[6px] px-[8px] border-[1px] border-black" value={props.elective} onChange={props.toggle}>
-                <option value="Professional electives">Professional electives</option>
-                <option value="Free electives">Free electives</option>
+                {options}
             </select>
         </div>
            

@@ -21,7 +21,7 @@ const CompressCard=(props)=>{
         <p className="ml-[102px] text-[9px] font-medium">{`by ${props.faculty}`}</p>
 
         <div className="flex justify-between mb-3 mx-[16px] pb-[5px]">
-            <p onClick={()=>{props.updateWishlist(props.id)}} className="cursor-pointer text-center bg-primary rounded-[52px] px-[12px] py-[3px] text-[12px] border-2 border-black font-semibold mt-[20px]">{(props.wishlist?"Remove Course":"Add Course")}</p>
+            <p onClick={()=>{props.updateWishlist(props.id,props.elective)}} className="cursor-pointer text-center bg-primary rounded-[52px] px-[12px] py-[3px] text-[12px] border-2 border-black font-semibold mt-[20px]">{(props.wishlist?"Remove Course":"Add Course")}</p>
             <p className="relative top-[30px] inline-block text-dark-grey text-[10px] ">{`${props.remainingPlaces} places left`}</p>
         </div>
         

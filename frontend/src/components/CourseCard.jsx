@@ -15,6 +15,7 @@ const toggle =()=>{
         <>
         {expand ? (
             <ExpandCard 
+                elective={props.elective}
                 toggle={toggle} 
                 updateWishlist={props.updateWishlist} 
                 key={props.id} 
@@ -33,6 +34,7 @@ const toggle =()=>{
                 />
         ) : (
             <CompressCard
+            elective={props.elective}
             toggle={toggle} 
             updateWishlist={props.updateWishlist} 
             key={props.id} 
