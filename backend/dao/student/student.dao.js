@@ -66,6 +66,14 @@ class studentDAO{
         }
     }
 
+    static async getSpecifiStudents({student_id}){
+        try {
+            
+        } catch (e) {
+            console.error(`Error: getSpecifiStudents, getting student, ${e}`)
+        }
+    }
+
     static async getEnrollment(req){
         
         let cursor
@@ -112,7 +120,7 @@ class studentDAO{
         }
     }
 
-    static async postEnrollment({student_id, wishlist1, wishlist2}){
+    static async postEnrollment({student_id, wishList1, wishList2}){
         const enroll_courses = wishlist1.concat(wishlist2)
 
         for(let i=0;i<enroll_courses.length;i++){
@@ -141,7 +149,7 @@ class studentDAO{
                 return e
             }
 
-            
+
             
             try{
                 let response = await students.updateOne(

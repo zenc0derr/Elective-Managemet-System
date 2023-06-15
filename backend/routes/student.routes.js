@@ -6,4 +6,5 @@ router.route("/").get(studentController.apiGetStudents);
 router.route("/enrollment").get(studentController.apiGetEnrollment);
 router.route("/bycourse/:id").get(studentController.apiGetStudentByCourse);
 router.route("/enroll").post(studentController.apiPostEnrollment)
+router.route("/specific").get(studentController.apiGetSpecificStudent)
 module.exports = router;
