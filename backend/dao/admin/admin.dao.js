@@ -1,5 +1,5 @@
 const mongodb = require("mongodb");
-const schedule = require('node-schedule');
+const Nschedule = require('node-schedule');
 
 
 let allocation
@@ -30,7 +30,7 @@ class adminDAO{
                 {allocation_id: 1},
                 {$set: schedule})
             
-            const job = schedule.scheduleJob(end_time, function(){
+            const job = Nschedule.scheduleJob(end_time, function(){
                 console.log('The answer to life, the universe, and everything!');
             });
             
