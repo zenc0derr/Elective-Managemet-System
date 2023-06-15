@@ -156,6 +156,7 @@ class studentDAO{
                     {$push: {courses_enrolled: enroll_courses[i]}}
                 )
 
+                
                 response = await students.updateOne(
                     {id: student_id},
                     {$set: {status: "Enrolled"}}

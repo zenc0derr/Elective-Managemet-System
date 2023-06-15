@@ -3,8 +3,40 @@ const Nschedule = require('node-schedule');
 
 
 let allocation
+let students
+let courses
+
 
 class adminDAO{
+
+    static async injectDBCourses(conn){
+        if(courses){
+            return
+        }
+
+        try {
+            courses = await conn.db(process.env.DATABASE_NAME).collection("course_catalogue")
+        } catch (e) {
+            console.error(
+                `unable to connect with course_catalogue, ${e}`
+            )
+        }
+    }
+
+    static async injectDBStudent(conn){
+        if(students){
+            return
+        }
+
+        try {
+            students = await conn.db(process.env.DATABASE_NAME).collection("student_info")
+        } catch (e) {
+            console.error(
+                `unable to connect with student_info, ${e}`
+            )
+        } 
+    }
+
     static async injectDB(conn){
         if(allocation){
             return
@@ -30,9 +62,68 @@ class adminDAO{
                 {allocation_id: 1},
                 {$set: schedule})
             
-            const job = Nschedule.scheduleJob(end_time, function(){
-                console.log('The answer to life, the universe, and everything!');
+            const job = Nschedule.scheduleJob(end_time, async function(){
+                let cursor
+                let pending_students
+                let allocation_details
+                try{
+                    cursor = await students.find({status: "Pending"})
+                    pending_students = await cursor.toArray()
+                    cursor = await allocation.find({allocation_id: 1})
+                    allocation_details = await cursor.toArray()
+
+                }catch(e){
+                    console.error(`Auto Schedule Error, ${e}`)
+                }
+
+                try {
+
+                    for(let student in pending_students){
+                        for(let proffessional of allocation_details[0].elective_category.proffessionalElectives){
+                            for(let course of proffessional){
+                                cursor = await courses.find({id: course.id})
+                                let x = await cursor.toArray()
+                                if(x[0].remaining_seats != 0){
+
+                                    let  flag = true
+                                    for(pre in x[0].pre_requisite){
+                                        flag == flag && student.courses_enrolled.includes(pre)
+                                    }
+
+                                    if(flag == false)
+                                        continue
+                                    
+                                    let updatedCourse = {
+                                        remaining_seats: x[0].remaining_seats - 1
+                                    }
+
+                                    let response = await courses.updateOne(
+                                        {id: enroll_courses[i]},
+                                        {$set: updatedCourse}
+                                    )
+
+                                    response = await students.updateOne(
+                                        {id: student.id},
+                                        {$push: {courses_enrolled: enroll_courses[i]}}
+                                    )
+
+                                    response = await students.updateOne(
+                                        {id: student.id},
+                                        {$set: {status: "Enrolled"}}
+                                    )
+
+                                    break
+                                }
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error(`Auto Schedule Error 2, ${e}`)
+                }
+
             });
+
+            console.log("Tejesh")
             
             return res
         }catch(e){
