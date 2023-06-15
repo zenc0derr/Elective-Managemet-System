@@ -133,6 +133,46 @@ class adminDAO{
                             }
                         }
 
+                        for(let free of allocation_details[0].elective_category.freeElectives){
+                            for(let course of free){
+                                cursor = await courses.find({id: course.id})
+                                let x = await cursor.toArray()
+                                if(x[0].remaining_seats != 0){
+
+                                    let  flag = true
+                                    for(pre in x[0].pre_requisite){
+                                        flag == flag && student.courses_enrolled.includes(pre)
+                                    }
+
+                                    if(flag == false)
+                                        continue
+                                    
+                                    let updatedCourse = {
+                                        remaining_seats: x[0].remaining_seats - 1
+                                    }
+
+                                    let response = await courses.updateOne(
+                                        {id: course.id},
+                                        {$set: updatedCourse}
+                                    )
+
+                                    response = await students.updateOne(
+                                        {id: student.id},
+                                        {$push: {courses_enrolled: course.id}}
+                                    )
+
+                                    enrolledList.push(course.id)
+
+                                    response = await students.updateOne(
+                                        {id: student.id},
+                                        {$set: {status: "Enrolled"}}
+                                    )
+
+                                    break
+                                }
+                            }
+                        }
+
                         var mailOptions = {
                             from: process.env.MAIL_ADDRESS,
                             to: student.email,
