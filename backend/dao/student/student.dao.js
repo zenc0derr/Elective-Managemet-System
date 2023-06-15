@@ -135,6 +135,7 @@ class studentDAO{
 
     static async postEnrollment({student_id, wish1, wish2}){
         const enroll_courses = wish1.concat(wish2)
+        let enrolledList = []
         
         for(let i=0;i<enroll_courses.length;i++){
             let course
@@ -155,6 +156,7 @@ class studentDAO{
                     {id: enroll_courses[i]},
                     {$set: updatedCourse}
                 )
+
             } catch (e) {
                 console.error(`Error updating remaining seats Postenrollement, ${e}`)
                 return e
@@ -167,6 +169,8 @@ class studentDAO{
                     {id: student_id},
                     {$push: {courses_enrolled: enroll_courses[i]}}
                 )
+
+                enrolledList.push(enroll_courses[i])
 
                 
                 response = await students.updateOne(
@@ -188,7 +192,7 @@ class studentDAO{
                 from: process.env.MAIL_ADDRESS,
                 to: details.email,
                 subject: 'AEMS Elective Enrollment',
-                html: `<p>Hey ${details.name}, Your Elective Enrollment is done. Visit AEMS for further details`
+                html: `<p>Hey ${details.name}, Your Elective Enrollment is done.</br> ${enrolledList} </br>Visit AEMS for further details`
             };
 
             transporter.sendMail(mailOptions, function(error, info){
