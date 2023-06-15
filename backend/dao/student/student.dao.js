@@ -66,8 +66,9 @@ class studentDAO{
         }
     }
 
-    static async getSpecifiStudents(student_id){
+    static async getStudentById(student_id){
         try {
+            console.log(student_id)
             let student = students.findOne({id: student_id})
             return student;
         } catch (e) {

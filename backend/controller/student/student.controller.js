@@ -6,8 +6,9 @@ class studentController{
         res.json(studentsList)
     }
 
-    static async apiGetSpecificStudent(req, res){
-        const student = await studentDAO.getSpecifiStudents(req.params.id)
+    static async apiGetStudentById(req, res){
+        console.log(req.params.id)
+        const student = await studentDAO.getStudentById(req.params.id)
         res.json(student)
     }
 
