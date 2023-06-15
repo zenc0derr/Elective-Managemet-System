@@ -54,6 +54,8 @@ class adminDAO{
     static async setSchedule({start_time, end_time, elecCateg}){
         try{
 
+            console.log(elecCateg)
+
             console.log(start_time, end_time)
             
             const schedule = {allocation_id: 1, start_time: start_time, end_time: end_time, elective_category: elecCateg}
@@ -77,8 +79,9 @@ class adminDAO{
                 }
 
                 try {
-
-                    for(let student in pending_students){
+                    console.log(pending_students)
+                    for(let student of pending_students){
+                        console.log(student.name)
                         for(let proffessional of allocation_details[0].elective_category.proffessionalElectives){
                             for(let course of proffessional){
                                 cursor = await courses.find({id: course.id})
@@ -98,13 +101,13 @@ class adminDAO{
                                     }
 
                                     let response = await courses.updateOne(
-                                        {id: enroll_courses[i]},
+                                        {id: course.id},
                                         {$set: updatedCourse}
                                     )
 
                                     response = await students.updateOne(
                                         {id: student.id},
-                                        {$push: {courses_enrolled: enroll_courses[i]}}
+                                        {$push: {courses_enrolled: course.id}}
                                     )
 
                                     response = await students.updateOne(
@@ -117,13 +120,13 @@ class adminDAO{
                             }
                         }
                     }
+                
+                    console.log("Job Done")
                 } catch (e) {
                     console.error(`Auto Schedule Error 2, ${e}`)
                 }
 
             });
-
-            console.log("Tejesh")
             
             return res
         }catch(e){
