@@ -17,10 +17,6 @@ app.use("/api/courses", courses)
 app.use("/api/student", student)
 app.use("/api/admin",admin)
 
-// app.post('/api/signin', (req, res) => {
-//     console.log(req.body)
-//     res.json({status: 'ok'})
-// })
 
 module.exports = app
 

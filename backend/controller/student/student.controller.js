@@ -7,7 +7,6 @@ class studentController{
     }
 
     static async apiGetStudentById(req, res){
-        console.log(req.params.id)
         const student = await studentDAO.getStudentById(req.params.id)
         res.json(student)
     }

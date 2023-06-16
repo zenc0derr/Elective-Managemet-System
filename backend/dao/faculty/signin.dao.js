@@ -22,11 +22,9 @@ class signinDAO{
         try{
             let query
             query = {"id": {$eq: req.body.id}}
-            console.log(query)
             const Faculty = await faculty.findOne(query)
 
             //const newPassword = await bcrypt.hash(req.body.password, 10)
-            console.log(req.body)
             const isPasswordValid = await bcrypt.compare(req.body.password, Faculty.password)
 
             return isPasswordValid

@@ -125,7 +125,6 @@ class coursesDAO{
                         for(let pre of x[0].pre_requisite){
                             flag = flag && student.courses_enrolled.includes(pre)
                         }
-                        console.log(x[0].id, flag)
                         if(flag == false){
                             free.splice(i,1)
                         }

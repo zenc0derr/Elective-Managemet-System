@@ -40,9 +40,7 @@ class signinDAO{
             
             const isPasswordValid = await bcrypt.compare(req.body.password, Admin.password)
 
-            console.log(Admin)
             if(isPasswordValid){
-                console.log("In")
                 otp = Math.floor(1000+Math.random()*9000)
                 var mailOptions = {
                     from: process.env.MAIL_ADDRESS,
@@ -62,7 +60,7 @@ class signinDAO{
             }
             return isPasswordValid
         }catch(e){
-            console.log(`dao, ${e}`)
+            console.error(`dao, ${e}`)
             return false
         }
         

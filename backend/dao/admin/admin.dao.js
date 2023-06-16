@@ -85,10 +85,8 @@ class adminDAO{
                 }
 
                 try {
-                    console.log(pending_students)
                     for(let student of pending_students){
                         let enrolledList = []
-                        console.log(student.name)
                         for(let proffessional of allocation_details[0].elective_category.proffessionalElectives){
                             for(let course of proffessional){
                                 cursor = await courses.find({id: course.id})
@@ -183,9 +181,7 @@ class adminDAO{
                               console.log('Email sent: ' + info.response);
                             }
                         });
-                    }
-                
-                    console.log("Job Done")
+                    }                
                 } catch (e) {
                     console.error(`Auto Schedule Error 2, ${e}`)
                 }
