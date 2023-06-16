@@ -1,0 +1,18 @@
+config:
+  target: "https://aems-api.onrender.com"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+
+scenarios:
+  - flow:
+    - get:
+        url: "/api/courses/professional"
+    - get:
+        url: "/api/courses/free"
+    - get:
+        url: "/api/courses"
+    - get:
+        url: "/api/courses/CB.EN.U4CSE20366"
+    - get:
+        url: "/api/courses/category"
