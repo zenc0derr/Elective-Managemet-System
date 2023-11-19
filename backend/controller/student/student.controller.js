@@ -35,7 +35,7 @@ class studentController{
             res.json({error : e})
         }
 
-        res.json({status: "success"})
+        res.status(200).json({status: "success"})
     }
 }
 

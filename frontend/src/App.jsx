@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Index.css'
+import './index.css'
 import Login from './components/login'
 import Student from './student.jsx'
 import OTP from "./components/otp.jsx"
