@@ -1,20 +1,18 @@
 version: 0.2
 
 phases:
-    pre_build:
-        commands:
-            ### Login to Amazon ECR
-             - echo Logging in to Amazon ECR...
-             - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/k1p5i4g9
-    build:
-        commands:
-            ### Building the image 
-             - echo Build started on `date`
-             - docker build --file ./Backend.Dockerfile -t backend . 
-             - docker tag backend:latest public.ecr.aws/k1p5i4g9/backend:latest
-             - echo Build completed on `date`
-    post_build:
-        commands:
-            ### Publish the docker image to ECR
-            - echo Pushing the Docker image...
-            - docker push public.ecr.aws/k1p5i4g9/backend:latest  
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build --file ./Backend.Dockerfile -t $IMAGE_REPO_NAME:$IMAGE_TAG . 
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
